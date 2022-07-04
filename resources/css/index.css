@@ -1,0 +1,179 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.bus{
+    align-content: center;
+    width: 32%;
+    display: inline-block;
+}
+
+.bus i {
+    color: darkcyan;
+    font-size: 40px;
+}body{
+     margin: 0;
+     padding: 0;
+     font-family: 'Open Sans', sans-serif;
+ }
+
+html{
+    margin: 0
+}
+
+.bus{
+    align-content: center;
+    width: 32%;
+    display: inline-block;
+}
+
+.bus img{
+    width: 100%;
+    color: black;
+}
+
+.bus i {
+    color: darkcyan;
+    font-size: 40px;
+}
+
+.bus table{
+    text-align: center;
+    padding: 20px;
+}
+
+.bus table .left{
+    text-align: left;
+}
+
+.bus table .right{
+    text-align: right;
+}
+
+.bus table .ocupado{
+    color: gray;
+}
+
+.bus table .selecionado{
+    color: coral;
+}
+
+.nav{
+    display: inline-block;
+}
+
+nav {
+    color: cornsilk;
+    height: 100px;
+    padding-left: 50px;
+}
+
+.logo img{
+    height: 100%;
+    display: inline-block;
+}
+
+.logo{
+    height: 100%;
+    display: inline-block;
+}
+
+
+.container{
+    margin-left: auto;
+    background-color: gainsboro;
+}
+.bus-ocupation{
+    width:60%;
+    float: right;
+}
+.table{
+    width:100%;
+    margin-top: 30px;
+}
+
+.reservar{
+    background-color: grey;
+    color: white;
+    height: 35px;
+    font-family: 'Open Sans';
+}
+
+.reservar:hover{
+    position: relative;
+    left: 2px;
+    top: 2px;
+
+}
+
+.formReserva{
+    width: 40%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 20%;
+
+}
+
+h1{
+    text-align: center;
+    margin-top: 1%;
+}
+
+
+.bus table{
+    text-align: center;
+    padding: 20px;
+}
+
+.bus table .left{
+    text-align: left;
+}
+
+.bus table .right{
+    text-align: right;
+}
+
+.bus table .ocupado{
+    color: coral;
+}
+
+.bus table .selecionado{
+    color: darkslategrey;
+}
+
+.nav{
+    display: inline-block;
+}
+
+nav {
+    color: black;
+    height: 100px;
+    padding-left: 50px;
+}
+
+
+.table{
+    width:100%;
+    margin-top: 30px;
+}
+
+.reservar{
+    background-color: black;
+    color: white;
+    height: 35px;
+    font-family: sans-serif;
+}
+
+.formReserva{
+    width: 40%;
+    margin: auto;
+    margin-top: 5%;
+}
+
+h1{
+    text-align: center;
+    margin-top: 1%;
+}

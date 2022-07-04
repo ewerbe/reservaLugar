@@ -9,7 +9,7 @@ public class Servidor {
 
     public static Semaphore mutex = new Semaphore(1);
     public static ArrayList<Reserva> reservas = new ArrayList<>();
-    public static Integer port = 8088;
+    public static Integer port = 8080;
 
     public static void main(String[] args) throws IOException {
 
@@ -20,9 +20,8 @@ public class Servidor {
             try {
                 new Thread(new Requisicao(serverSocket, mutex, reservas)).start();
             } catch (Exception e) {
-
                 System.out.println("ERRO:");
-                System.out.println(e.getStackTrace());
+                System.out.println(e.getMessage());
             }
         }
 

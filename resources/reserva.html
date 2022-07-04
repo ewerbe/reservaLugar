@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<nav>
+    <a href="./index.html">
+        <div class="logo">
+            <h1 style="color: cornsilk; font-weight: bolder; font-style: normal;">lugar no bus</h1>
+        </div>
+    </a>
+</nav>
+<div class="container">
+    <div class="bus">
+        <div>
+            <table width="100%" cellpadding="15%" cellspacing="5%">
+                <tr>
+                    <td class="left"> 01 <i class="fas fa-chair icon01 "></i><i class="fas fa-chair icon02"></i> 02</td>
+                    <td class="right">03 <i class="fas fa-chair icon03"></i> <i class="fas fa-chair icon04"></i> 04</td>
+                </tr>
+                <tr>
+                    <td class="left">05 <i class="fas fa-chair  icon05"></i> <i class="fas fa-chair icon06"> </i> 06</td>
+                    <td class="right">07 <i class="fas fa-chair icon07"></i> <i class="fas fa-chair icon08"></i> 08</td>
+                </tr>
+                <tr>
+                    <td class="left">09 <i class="fas fa-chair  icon09"></i> <i class="fas fa-chair icon010"></i> 10</td>
+                    <td class="right">11 <i class="fas fa-chair icon011"></i> <i class="fas fa-chair icon012"></i> 12</td>
+                </tr>
+                <tr>
+                    <td class="left">13 <i class="fas fa-chair icon013"></i> <i class="fas fa-chair icon014"></i> 14</td>
+                    <td class="right">15 <i class="fas fa-chair icon015"></i> <i class="fas fa-chair icon016"></i> 16</td>
+                </tr>
+                <tr>
+                    <td class="left">17 <i class="fas fa-chair icon017"></i> <i class="fas fa-chair icon018"></i> 18</td>
+                    <td class="right">19 <i class="fas fa-chair icon019"></i> <i class="fas fa-chair icon020"></i> 20</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="bus-ocupation">
+        <h1 style="font-weight: bolder; color: grey;">reservar lugar</h1>
+        <form class="formReserva" method="GET" action="/confirmar">
+            <div class="form-group inputName">
+                <label for="nomeReserva">nome:</label>
+                <input type="text" class="form-control" id="nomeReserva" name="nome" required>
+            </div>
+            <div class="form-group selectNumeroLugar">
+                <label for="sel-numero-lugar">selecione o lugar:</label>
+                <select class="form-control" id="sel-numero-lugar" name="numero-lugar" required>
+                    <option value="" data-default disabled selected>Selecione</option>
+                    <option id="1">01</option>
+                    <option id="2">02</option>
+                    <option id="3">03</option>
+                    <option id="4">04</option>
+                    <option id="5">05</option>
+                    <option id="6">06</option>
+                    <option id="7">07</option>
+                    <option id="8">08</option>
+                    <option id="9">09</option>
+                    <option id="10">10</option>
+                    <option id="11">11</option>
+                    <option id="12">12</option>
+                    <option id="13">13</option>
+                    <option id="14">14</option>
+                    <option id="15">15</option>
+                    <option id="16">16</option>
+                    <option id="17">17</option>
+                    <option id="18">18</option>
+                    <option id="19">19</option>
+                    <option id="20">20</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-outline-dark" value="confirmar" >
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="js/reservar.js"></script>
+<script>
+    var numeroLugar
+    $('#sel-numero-lugar').change((value)=>{
+        $('.selecionado').removeClass('selecionado')
+
+        numeroLugar = $('#sel-numero-lugar').val();
+        $(`i.icon0${parseInt(numeroLugar)}`).addClass('selecionado')
+    })
+</script>
+</body>
+</html>
