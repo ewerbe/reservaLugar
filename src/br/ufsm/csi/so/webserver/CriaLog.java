@@ -9,14 +9,16 @@ import java.util.concurrent.Semaphore;
 
 public class CriaLog {
 
-    private static int tamBuf = 1000;
-    private static byte[] logBuffer = new byte[tamBuf];
+    private static int bufferTam = 1000;
+    private static byte[] logBuffer = new byte[bufferTam];
     private Socket Socket;
-    private InetAddress ipReservado;
-    Semaphore vazio = new Semaphore(tamBuf);
-    Semaphore cheio = new Semaphore(0);
-    Semaphore mutex = new Semaphore(1);
-    private static int iStatic;
+    private InetAddress ipUsuario;
+
+    private Semaphore vazio = new Semaphore(bufferTam);
+    private Semaphore cheio = new Semaphore(0);
+    private Semaphore mutex = new Semaphore(1);
+    private static int val;
+
     private static File file = new File("log.txt");
     private String requisicao;
     private String dataHora;
@@ -36,33 +38,32 @@ public class CriaLog {
 
         new Thread(new CriaLog.ProduzLog()).start();
         new Thread(new CriaLog.GravaLog()).start();
-
     }
 
-    private class ProduzLog implements Runnable {
 
+    private class ProduzLog implements Runnable {
         @Override
         public void run() {
 
-            ipReservado = Socket.getInetAddress();
-            String ipString = ipReservado.toString();
+            ipUsuario = Socket.getInetAddress();
+            String ipUsuarioString = ipUsuario.toString();
             String[] endereco = requisicao.split("Host");
-            String logString = "\nIp:"  + ipString +  " Endereco: " + endereco[0] + " Data e hora: "+  dataHora +  " \n";
+            String logString = "\nIp:" + ipUsuarioString + " Endereco: " + endereco[0] + " Data e hora: "+ dataHora + " \n";
 
-            byte[] logBype = logString.getBytes();
+            byte[] logByte = logString.getBytes();
             try {
-                vazio.acquire(logBype.length);
+                vazio.acquire(logByte.length);
                 mutex.acquire();
             } catch (InterruptedException e) {
+                System.out.println("ERRO: "+e.getMessage());
             }
-            System.out.println("gravou");
-            for (int i = 0; i < logBype.length; i++) {
-                logBuffer[iStatic] = logBype[i];
-                iStatic++;
+            System.out.println("gravou os dados para o log...");
+            for (int i = 0; i < logByte.length; i++) {
+                logBuffer[val] = logByte[i];
+                val++;
             }
             mutex.release();
             cheio.release();
-
         }
 
     }
@@ -76,27 +77,26 @@ public class CriaLog {
                 cheio.acquire();
                 mutex.acquire();
             } catch (InterruptedException e) {
-                // TODO: handle exception
+                System.out.println("ERRO: "+e.getMessage());
             }
 
-            String logString = new String(logBuffer, 0, iStatic);
-            int tamanhoUsado = iStatic;
-            iStatic = 0;
-            logBuffer = new byte[tamBuf];
+            String logString = new String(logBuffer, 0, val);
+            int tamConsumido = val;
+            val = 0;
+            logBuffer = new byte[bufferTam];
 
-            System.out.println("consumiu");
+            System.out.println("consumiu...");
             mutex.release();
-            vazio.release(tamanhoUsado);
+            vazio.release(tamConsumido);
 
             try {
                 FileWriter myWriter = new FileWriter("log.txt", true);
                 myWriter.write(logString);
                 myWriter.close();
             } catch (IOException e) {
-                System.out.println("Erro ao gravar os dados");
+                System.out.println("Não foi possível gravar o log...");
                 e.printStackTrace();
             }
-
 
         }
 

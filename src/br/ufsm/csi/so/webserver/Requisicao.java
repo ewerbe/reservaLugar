@@ -54,12 +54,14 @@ public class Requisicao implements Runnable {
                     System.out.println("nova reserva...");
                     Reserva novaReserva = new Reserva(numeroLugar, nome, data, true);
                     reservas.add(novaReserva);
+                    new CriaLog(socket, requisicao, data);
                     ok = true;
                 }
             } else {
                 System.out.println("nova reserva...");
                 Reserva novaReserva = new Reserva(numeroLugar, nome, data, true);
                 reservas.add(novaReserva);
+                new CriaLog(socket, requisicao, data);
                 ok = true;
             }
             mutex.release();
@@ -84,8 +86,6 @@ public class Requisicao implements Runnable {
             if (linha0[1].startsWith("/confirmar")) { //verifica se houve sucesso ou falha na solicitacao do pedido
                 if(ok) {
                     outputStream.write("<script type='text/javascript'>alert('Reserva realizada com sucesso')</script>".getBytes(StandardCharsets.UTF_8));
-
-
                 }else {
                     outputStream.write("<script type='text/javascript'>alert('Não foi possível realizar a reserva deste lugar')</script>".getBytes(StandardCharsets.UTF_8));
                 }
